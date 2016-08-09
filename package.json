@@ -1,0 +1,40 @@
+{
+  "name": "angularWebPackSample",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "angular-ui-bootstrap": "^1.3.3",
+    "angular-ui-router": "^0.3.1",
+    "bootstrap": "^3.3.6",
+    "html-webpack-plugin": "^2.21.0",
+    "less-loader": "^2.2.3",
+    "lodash": "^4.13.1",
+    "restangular": "^1.5.2"
+  },
+  "devDependencies": {
+    "babel-core": "^6.9.1",
+    "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
+    "css-loader": "^0.23.1",
+    "file-loader": "^0.8.5",
+    "html-webpack-plugin": "^2.21.0",
+    "jade": "^1.11.0",
+    "jade-html-loader": "0.0.3",
+    "jade-loader": "^0.8.0",
+    "jquery": "^3.0.0",
+    "moment": "^2.13.0",
+    "node-sass": "^3.7.0",
+    "sass-loader": "^3.2.0",
+    "style-loader": "^0.13.1",
+    "stylus-loader": "^2.1.1",
+    "url-loader": "^0.5.7",
+    "webpack-dev-server": "^1.14.1"
+  },
+  "scripts": {
+    "start": "webpack-dev-server --hot --inline",
+    "b": "webpack-dev-server --hot --inline --config webpack.build.config.js"
+  },
+  "author": "",
+  "license": "ISC"
+}
