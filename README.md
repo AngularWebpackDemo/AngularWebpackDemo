@@ -19,3 +19,10 @@
 --------------------
 参考但不完全遵循
 [Angular风格指南](https://github.com/mgechev/angularjs-style-guide/blob/master/README-zh-cn.md)
+
+
+#### 目录结构
+--------------------
+目前在做的是基于angular的拖拽这一块,其他先不要管
+拖拽放在
+/app/ngDraggable下面
