@@ -10,6 +10,7 @@
     "html-webpack-plugin": "^2.21.0",
     "less-loader": "^2.2.3",
     "lodash": "^4.13.1",
+    "ngdraggable": "^0.1.10",
     "restangular": "^1.5.2"
   },
   "devDependencies": {
