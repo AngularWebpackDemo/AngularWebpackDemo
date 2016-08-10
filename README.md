@@ -24,5 +24,7 @@
 #### 目录结构
 --------------------
 目前在做的是基于angular的拖拽这一块,其他先不要管
-拖拽放在
-/app/ngDraggable下面
+
+/app/ngDraggable 拖放程序示例
+
+/app/ngInject    angular三种常用注入方法
