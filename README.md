@@ -6,7 +6,7 @@
 1. npm install webpack -g
 2. 本目录下npm install
 3. npm start
-4. 访问localhost:8080
+4. 访问localhost:8888
 #### 目的
 --------------------
 * 示范使用Webpack搭建Angular环境的方法

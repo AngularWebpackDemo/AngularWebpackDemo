@@ -1,4 +1,5 @@
 var path = require('path');
+var webpack = require("webpack");
 
 console.log(path)
 var HtmlwebpackPlugin = require('html-webpack-plugin');
@@ -19,8 +20,19 @@ module.exports = {
     plugins: [
         new HtmlwebpackPlugin({
             title: 'AngularSample',
-            template: './app/jade/index.jade'
-        })
+            template: './app/index/index.jade'
+        }),
+
+
+        // 文件压缩(上线时使用)
+        // 调试时使用会增加编译时间
+        //new webpack.optimize.UglifyJsPlugin({
+        //    compress: {
+        //        warnings: false
+        //    },
+        //    mangle:true, // 破碎选项
+        //    beautify:false
+        //}),
     ],
 
     //
@@ -62,7 +74,7 @@ module.exports = {
                 }
             },
             // jade模版
-            {test: /\.jade$/, loader: "jade",include: VIEW_PATH},
+            {test: /\.jade$/, loader: "jade", include: VIEW_PATH},
 
 
             // html模版
@@ -109,21 +121,21 @@ module.exports = {
     },
 
     devServer: {
-        port: 3333,
+        port: 8888,
         historyApiFallback: true,
         hot: true,
         inline: true,
         progress: true,
-        proxy:{
-            '/mock/*':{
-                target: 'http://192.168.0.30/mockjsdata/12',
-                rewrite : function(req,header){
-                    req.url = req.url.replace(/^\/mock/,'');
-                    console.log(req.url);
-                },
-                changeOrigin: true,
-                secure: false
-            }
-        }
+        //proxy:{
+        //    '/mock/*':{
+        //        target: 'http://192.168.0.30/mockjsdata/12',
+        //        rewrite : function(req,header){
+        //            req.url = req.url.replace(/^\/mock/,'');
+        //            console.log(req.url);
+        //        },
+        //        changeOrigin: true,
+        //        secure: false
+        //    }
+        //}
     },
 };

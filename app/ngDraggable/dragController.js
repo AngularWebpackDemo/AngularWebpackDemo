@@ -18,22 +18,28 @@ export default function (app) {
 
             $scope.draggableObjects = [{name: 'one'}, {name: 'two'}, {name: 'three'}, {
                 name: 'no-clone',
-                allowClone: false
+                allowClone1: false
             }];
             $scope.droppedObjects1 = [];
             $scope.droppedObjects2 = [];
             $scope.onDropComplete1 = function (data, evt) {
+                console.log('onDropComplete1...',data)
+
                 var index = $scope.droppedObjects1.indexOf(data);
                 if (index == -1)
                     $scope.droppedObjects1.push(data);
             }
             $scope.onDragSuccess1 = function (data, evt) {
+
+                console.log('onDragSuccess1...',data)
                 var index = $scope.droppedObjects1.indexOf(data);
                 if (index > -1) {
                     $scope.droppedObjects1.splice(index, 1);
                 }
             }
             $scope.onDragSuccess2 = function (data, evt) {
+
+
                 var index = $scope.droppedObjects2.indexOf(data);
                 if (index > -1) {
                     $scope.droppedObjects2.splice(index, 1);
