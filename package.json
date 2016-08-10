@@ -8,9 +8,12 @@
     "angular-ui-router": "^0.3.1",
     "bootstrap": "^3.3.6",
     "html-webpack-plugin": "^2.21.0",
+    "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "lodash": "^4.13.1",
     "ngdraggable": "^0.1.10",
+    "raw": "^0.1.4",
+    "raw-loader": "^0.5.1",
     "restangular": "^1.5.2"
   },
   "devDependencies": {
@@ -30,6 +33,7 @@
     "style-loader": "^0.13.1",
     "stylus-loader": "^2.1.1",
     "url-loader": "^0.5.7",
+    "webpack": "^1.13.1",
     "webpack-dev-server": "^1.14.1"
   },
   "scripts": {

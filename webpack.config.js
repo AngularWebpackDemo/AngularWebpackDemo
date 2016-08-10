@@ -108,21 +108,22 @@ module.exports = {
         ]
     },
 
-    //devServer: {
-    //    historyApiFallback: true,
-    //    hot: true,
-    //    inline: true,
-    //    progress: true,
-    //    proxy:{
-    //        '/mock/*':{
-    //            target: 'http://192.168.0.30/mockjsdata/12',
-    //            rewrite : function(req,header){
-    //                req.url = req.url.replace(/^\/mock/,'');
-    //                console.log(req.url);
-    //            },
-    //            changeOrigin: true,
-    //            secure: false
-    //        }
-    //    }
-    //},
+    devServer: {
+        port: 3333,
+        historyApiFallback: true,
+        hot: true,
+        inline: true,
+        progress: true,
+        proxy:{
+            '/mock/*':{
+                target: 'http://192.168.0.30/mockjsdata/12',
+                rewrite : function(req,header){
+                    req.url = req.url.replace(/^\/mock/,'');
+                    console.log(req.url);
+                },
+                changeOrigin: true,
+                secure: false
+            }
+        }
+    },
 };
