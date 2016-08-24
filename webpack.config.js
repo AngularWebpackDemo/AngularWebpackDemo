@@ -26,13 +26,13 @@ module.exports = {
 
         // 文件压缩(上线时使用)
         // 调试时使用会增加编译时间
-        //new webpack.optimize.UglifyJsPlugin({
-        //    compress: {
-        //        warnings: false
-        //    },
-        //    mangle:true, // 破碎选项
-        //    beautify:false
-        //}),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false
+            },
+            mangle:true, // 破碎选项
+            beautify:false
+        }),
     ],
 
     //
@@ -41,7 +41,7 @@ module.exports = {
     //    fallback: path.join(__dirname, "jade")
     //
     //},
-
+    //devtool: 'eval',
     module: {
         loaders: [
             // CSS文件方式
@@ -74,13 +74,13 @@ module.exports = {
                 }
             },
             // jade模版
-            {test: /\.jade$/, loader: "jade", include: VIEW_PATH},
+            {test: /\.jade$/, loader: "html!jade-html", include: VIEW_PATH},
 
 
             // html模版
             {
                 test: /\.html$/,
-                loader: "raw",
+                loader: "html",
                 include: VIEW_PATH
             },
             // jade模版

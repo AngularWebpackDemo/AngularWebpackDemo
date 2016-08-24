@@ -28,3 +28,16 @@
 /app/ngDraggable 拖放程序示例
 
 /app/ngInject    angular三种常用注入方法
+
+/app/imageLoad 测试image资源加载情况
+
+#### 开发步骤
+--------------------
+通过修改index.js
+
+```app.config(['$urlRouterProvider',
+    function ($urlRouterProvider) {
+
+        $urlRouterProvider.otherwise('/drag')
+    }]);
+````

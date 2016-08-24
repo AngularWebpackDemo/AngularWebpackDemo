@@ -9,9 +9,10 @@ var app = angular.module('app', [uirouter, uib,'ngDraggable'])
 app.config(['$urlRouterProvider',
     function ($urlRouterProvider) {
 
-        $urlRouterProvider.otherwise('/drag')
+        $urlRouterProvider.otherwise('/imageLoad')
     }]);
 import 'bootstrap/less/bootstrap.less'
 
 require('./ngDraggable/dragController.js').default(app)
 require('./ngInject/ngInject.js').default(app)
+require('./imageLoad/imageLoad.js').default(app)
