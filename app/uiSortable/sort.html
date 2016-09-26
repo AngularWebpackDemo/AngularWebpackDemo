@@ -1,0 +1,185 @@
+<style>
+
+
+    [ng-drag], [ng-drag-clone] {
+        -moz-user-select: -moz-none;
+        -khtml-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+    }
+
+    .drag-object, [ng-drag-clone], [ng-drop] [ng-drag] {
+        width: 100px;
+        height: 100px;
+        background: rgba(118, 110, 255, 0.5);
+        color: white;
+        text-align: center;
+        padding-top: 40px;
+        display: inline-block;
+        margin: 0 10px;
+        cursor: move;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .drag-object [ng-drag] {
+        width: 100px;
+        height: 100px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        padding: 0;
+        margin: 0;
+    }
+
+    [ng-drag-clone] {
+        margin: 0;
+    }
+
+    [ng-drag].drag-over {
+        border: solid 1px red;
+    }
+
+    [ng-drag].dragging {
+        opacity: 0.5;
+    }
+
+    [ng-drop] {
+        background: rgba(0, 255, 0, 0.5);
+        text-align: center;
+        width: 600px;
+        height: 200px;
+        padding-top: 90px;
+        display: block;
+        margin: 20px auto;
+        position: relative;
+    }
+
+    [ng-drop].drag-enter {
+        border: solid 5px red;
+    }
+
+    [ng-drop] span.title {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 200px;
+        height: 20px;
+        margin-left: -100px;
+        margin-top: -10px;
+    }
+
+    [ng-drop] div {
+        position: relative;
+        z-index: 2;
+    }
+
+
+
+    .list {
+        list-style: none outside none;
+        margin: 10px 0 30px;
+    }
+
+    .apps-container {
+        border: 2px dashed blue;
+        margin: 10px 10px 0 0;
+        padding: 5px;
+    }
+
+    .app {
+        width: 170px;
+        padding: 5px 10px;
+        margin: 5px 0;
+        border: 2px solid #444;
+        border-radius: 5px;
+        background-color: #EA8A8A;
+
+        font-size: 1.1em;
+        font-weight: bold;
+        text-align: center;
+        cursor: move;
+    }
+
+    /***  Extra ***/
+
+    body {
+        font-family: Verdana, 'Trebuchet ms', Tahoma;
+    }
+
+    .logList {
+        margin-top: 20px;
+        width: 250px;
+        min-height: 300px;
+        padding: 5px 15px;
+        border: 5px solid #000;
+        border-radius: 15px;
+    }
+
+    .logItem {
+        margin-bottom: 10px;
+    }
+
+    .logList:before {
+        content: 'log';
+        padding: 0 5px;
+        position: relative;
+        top: -1.1em;
+        background-color: #FFF;
+    }
+
+    .container {
+        width: 750px;
+        margin: auto;
+    }
+
+    h2 {
+        text-align: center;
+    }
+
+    .floatleft {
+        float: left;
+    }
+
+    .floatright {
+        float: right;
+    }
+
+    .clear {
+        clear: both;
+    }
+
+    * {
+        -moz-box-sizing: border-box;
+        -webkit-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+
+
+</style>
+<div class="container">
+    <h2>维度选择</h2>
+
+
+    维度条件
+    <div ui-sortable="sortableOptionsList[0]" class="apps-container screen floatleft" ng-model="condition">
+
+        条件
+        <div class="app" ng-repeat="app in condition">{{app.title}}</div>
+    </div>
+    <div ui-sortable="sortableOptionsList[1]" class="apps-container screen floatleft" ng-model="col"
+         style="width: 200px">
+
+        行
+        <div class="app" ng-repeat="app in col">{{app.title}}</div>
+    </div>
+    <div ui-sortable="sortableOptionsList[2]" class="apps-container screen floatleft" ng-model="row"
+         style="width: 600px">
+        列
+        <span class="app" ng-repeat="app in row">{{app.title}}</span>
+    </div>
+
+    <div class="clear"></div>
+</div>

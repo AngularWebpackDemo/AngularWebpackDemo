@@ -1,0 +1,11 @@
+<div class="btn-group">
+    <button type="button" class="btn btn-default">{{dropDown.name}}</button>
+    <button type="button" class="btn btn-default dropdown-toggle"
+            data-toggle="dropdown">
+        <span class="caret"></span>
+        <span class="sr-only">切换下拉菜单</span>
+    </button>
+    <ul class="dropdown-menu" role="menu">
+        <li ng-repeat="item in dropDown.data" ng-click="dropDown.click(item)"><a>{{item.name}}</a></li>
+    </ul>
+</div>

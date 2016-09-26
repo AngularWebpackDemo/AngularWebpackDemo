@@ -18,6 +18,14 @@ module.exports = {
     },
     //添加我们的插件 会自动生成一个html文件
     plugins: [
+
+
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery' : 'jquery'
+        }),
+
         new HtmlwebpackPlugin({
             title: 'AngularSample',
             template: './app/index/index.jade'
@@ -26,13 +34,13 @@ module.exports = {
 
         // 文件压缩(上线时使用)
         // 调试时使用会增加编译时间
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            },
-            mangle:true, // 破碎选项
-            beautify:false
-        }),
+        //new webpack.optimize.UglifyJsPlugin({
+        //    compress: {
+        //        warnings: false
+        //    },
+        //    mangle:true, // 破碎选项
+        //    beautify:false
+        //}),
     ],
 
     //

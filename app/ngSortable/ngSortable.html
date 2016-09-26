@@ -1,0 +1,62 @@
+<style>
+
+
+</style>
+
+<div id="sortable-container">
+    <div id="columns" class="row">
+        <div class="col-sm-6 col-xs-6">
+            <div class="column">
+                <div class="columnHeader">
+                    <span>条件</span>
+                </div>
+                <div class="sortable-row" as-sortable="conditionOptions" data-ng-model="itemsList.condition">
+                    <div ng-repeat="item in itemsList.condition" as-sortable-item>
+                        <div as-sortable-item-handle>{{item.Label}}|{{item.isUsed}}
+                            <dropdown list='dpList[item.Label]' selected='item.value'></dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xs-6">
+            <div class="column">
+                <div class="columnHeader">
+                    <span>横向</span>
+                </div>
+                <div style="width: 100%"
+                     class="sortable-row" as-sortable="rowOptions" data-ng-model="itemsList.row">
+                    <div ng-repeat="item in itemsList.row" as-sortable-item>
+                        <div as-sortable-item-handle ng-click="add(item)">{{item.Label}}|{{item.isUsed}}
+                            <dropdown list='dpList[item.Label]'  selected='item.value'></dropdown>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6 col-xs-6">
+            <div class="column">
+                <div class="columnHeader">
+                    <span>纵向</span>
+                </div>
+                <div class="sortable-row" as-sortable="colOptions" data-ng-model="itemsList.col">
+                    <div ng-repeat="item in itemsList.col" as-sortable-item>
+                        <div as-sortable-item-handle ng-click="add(item)">
+                            {{item.Label}}|{{item.isUsed}}
+                            <dropdown list='dpList[item.Label]'  selected='item.value'></dropdown>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<dropdown  list='dpList["时间"]'></dropdown>
+<dropdown selected = '"按月"' list='dpList["平台"]'></dropdown>
