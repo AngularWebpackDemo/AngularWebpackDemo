@@ -55,13 +55,10 @@ export default function (app) {
             $scope.itemsList.condition.push({Label: '平台', 'count': 0});
 
 
-            for (i = 0; i <= 0; i += 1) {
-                $scope.itemsList.row.push({'Id': i, 'Label': 'Item r_' + i, 'count': 0});
-            }
+            $scope.itemsList.row.push({'Label': '维度', 'count': 0});
 
-            for (i = 0; i <= 0; i += 1) {
-                $scope.itemsList.col.push({'Id': i, 'Label': 'Item c_' + i, 'count': 0});
-            }
+
+            //$scope.itemsList.col.push({'Label': '维度', 'count': 0});
 
 
             $scope.conditionOptions = {
@@ -104,12 +101,12 @@ export default function (app) {
                     }
                 }
 
-            };
+            }
 
-
-            $scope.add = function (item) {
-                item.count = item.count + 1
-
+            // 删除功能
+            $scope.del = function (list, index) {
+                //delete item
+                list.splice(index, 1)
 
             }
 
