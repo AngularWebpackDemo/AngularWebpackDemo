@@ -28,3 +28,16 @@
 
 .as-sortable-hidden {
 }
+#horizontal-container .sortable-row{
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#horizontal-container .as-sortable-item, #horizontal-container .as-sortable-placeholder{
+    width: 124px;
+    height: 110px;
+    display: inline-block;
+    float: left;
+}

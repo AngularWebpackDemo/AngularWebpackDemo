@@ -58,7 +58,10 @@ export default function (app) {
             $scope.itemsList.row.push({'Label': '维度', 'count': 0});
 
 
-            //$scope.itemsList.col.push({'Label': '维度', 'count': 0});
+
+            //$scope.itemsList.col.push({'Label': '维度1', 'count': 0});
+            //$scope.itemsList.col.push({'Label': '维度2', 'count': 0});
+            //$scope.itemsList.col.push({'Label': '维度3', 'count': 0});
 
 
             $scope.conditionOptions = {
@@ -79,11 +82,8 @@ export default function (app) {
                 containment: '#sortable-container',
                 allowDuplicates: false,
                 accept: function (sourceItemHandleScope, destSortableScope, destItemScope) {
-                    if (destItemScope) {
-                        return isAccept(sourceItemHandleScope['item'], destSortableScope.modelValue, $scope.itemsList.col);
-                    } else {
-                        return false
-                    }
+                        return isAccept(sourceItemHandleScope['item']);
+
                 },
 
             };
@@ -93,12 +93,8 @@ export default function (app) {
                 allowDuplicates: false,
                 accept: function (sourceItemHandleScope, destSortableScope, destItemScope) {
 
-                    if (destItemScope) {
                         return isAccept(sourceItemHandleScope['item']);
 
-                    } else {
-                        return false
-                    }
                 }
 
             }
@@ -120,6 +116,9 @@ export default function (app) {
 
                 let isInCol = isInArray(item, $scope.itemsList.col)
                 let isInRow = isInArray(item, $scope.itemsList.row)
+
+
+                console.log('c',isInCol,isInRow)
 
                 if (isInRow || isInCol) {
                     return false

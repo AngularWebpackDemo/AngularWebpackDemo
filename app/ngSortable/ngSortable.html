@@ -27,9 +27,8 @@
                     <span>横向</span>
                 </div>
                 <div class="sortable-row" as-sortable="rowOptions" data-ng-model="itemsList.row"
-                        style="min-height: 50px;width:500px;border: 1px solid #ff3852">
-                    <div ng-repeat="item in itemsList.row" as-sortable-item
-                         style="min-height: 50px;border: 1px solid #39ff33">
+                     style="min-height: 50px;border: 1px solid #ff3852">
+                    <div ng-repeat="item in itemsList.row" as-sortable-item>
                         <div as-sortable-item-handle>{{item.Label}}|{{item.isUsed}}
                             <dropdown list='dpList[item.Label]' selected='item.value'></dropdown>
                             <span ng-click="del(itemsList.row,$index)">删</span>
@@ -39,22 +38,22 @@
             </div>
         </div>
     </div>
-    <div class="row" style="min-height: 50px;border: 1px solid #000">
-        <div class="col-sm-6 col-xs-6">
+    <div class="row" id="horizontal-container" style="min-height: 50px;border: 1px solid #000">
+        <div class="col-sm-12 col-xs-12">
             <div class="column">
                 <div class="columnHeader">
                     <span>纵向</span>
                 </div>
                 <div class="sortable-col" as-sortable="colOptions" data-ng-model="itemsList.col"
-                     style="height: 200px;width:500px;border: 1px solid #ff3852">
-                    <div ng-repeat="item in itemsList.col" as-sortable-item
-                         style="min-height: 50px;border: 1px solid #39ff33">
+                     style="min-height: 50px;border: 1px solid #ff3852">
+                    <div ng-repeat="item in itemsList.col" as-sortable-item>
                         <div as-sortable-item-handle>
                             {{item.Label}}|{{item.isUsed}}
                             <dropdown list='dpList[item.Label]' selected='item.value'></dropdown>
                             <span ng-click="del(itemsList.col,$index)">删</span>
                         </div>
                     </div>
+                    <div style="clear: both;height: 1px;"></div>
                 </div>
             </div>
         </div>
