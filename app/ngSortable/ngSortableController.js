@@ -43,34 +43,39 @@ export default function (app) {
 
 
             var i;
-            $scope.itemsList = {
-                condition: [],
-                row: [],
+            $scope.itemsList = {condition: [], sheets: []}
+
+            var dimension = [{v: 1}]
+            var sheet = {
+                dimension: dimension,
+                row: [{'name': '维度', 'count': 0, 'isUsed': true, dimension: dimension}],
                 col: []
             };
 
-            $scope.itemsList.condition.push({Label: '时间', 'count': 0});
-            $scope.itemsList.condition.push({Label: '媒体', 'count': 0});
-            $scope.itemsList.condition.push({Label: '市场', 'count': 0});
-            $scope.itemsList.condition.push({Label: '平台', 'count': 0});
+
+            $scope.itemsList.sheets.push(sheet)
 
 
-            $scope.itemsList.row.push({'Label': '维度', 'count': 0});
+            $scope.itemsList.condition.push({name: '时间', value: '按时'});
+            $scope.itemsList.condition.push({name: '媒体', value: '按时'});
+            $scope.itemsList.condition.push({name: '市场', value: '按时'});
+            $scope.itemsList.condition.push({name: '平台', value: '按时'});
 
 
+            //$scope.itemsList.row.push({'name': '维度', 'count': 0});
 
-            //$scope.itemsList.col.push({'Label': '维度1', 'count': 0});
-            //$scope.itemsList.col.push({'Label': '维度2', 'count': 0});
-            //$scope.itemsList.col.push({'Label': '维度3', 'count': 0});
+            //$scope.itemsList.col.push({'name': '维度1', 'count': 0});
+            //$scope.itemsList.col.push({'name': '维度2', 'count': 0});
+            //$scope.itemsList.col.push({'name': '维度3', 'count': 0});
 
 
             $scope.conditionOptions = {
                 containment: '#sortable-container',
 
                 clone: true,
-                dragEnd: function (obj) {
+                dragEnd: function () {
                     setAllUsed()
-
+                    setDimensionToEnd()
                 },
                 accept: function () {
                     "use strict";
@@ -78,26 +83,52 @@ export default function (app) {
                 }
 
             };
-            $scope.rowOptions = {
+            var option = {
                 containment: '#sortable-container',
                 allowDuplicates: false,
                 accept: function (sourceItemHandleScope, destSortableScope, destItemScope) {
-                        return isAccept(sourceItemHandleScope['item']);
+                    //console.log('destSortableScope.....',destSortableScope)
+                    console.log('destItemScope.....', destItemScope)
+
+
+                    //
+                    //if(destItemScope && destItemScope.item && destItemScope.item.name === '维度'){
+                    //    return false
+                    //}
+
+                    var sheetNo = destSortableScope.element[0].id
+
+                    return isAccept(sourceItemHandleScope['item'], sheetNo);
 
                 },
-
-            };
-
-            $scope.colOptions = {
-                containment: '#sortable-container',
-                allowDuplicates: false,
-                accept: function (sourceItemHandleScope, destSortableScope, destItemScope) {
-
-                        return isAccept(sourceItemHandleScope['item']);
-
-                }
+                dragEnd: function () {
+                    setDimensionToEnd()
+                },
 
             }
+            $scope.rowOptions = option
+            $scope.colOptions = option
+
+            $scope.addSheet = function () {
+                console.log('addSheet....', angular.toJson($scope.itemsList))
+                var dimension = [{v: 1}]
+                var sheet = {
+                    dimension: dimension,
+                    row: [{'name': '维度', 'count': 0, 'isUsed': true, dimension: dimension}],
+                    col: []
+                };
+
+
+                $scope.itemsList.sheets.push(sheet)
+            }
+
+
+            $scope.delSheet = function (sheet, index) {
+                //delete item
+                sheet.splice(index, 1)
+
+            }
+
 
             // 删除功能
             $scope.del = function (list, index) {
@@ -106,26 +137,36 @@ export default function (app) {
 
             }
 
+            // 增加维度
+            $scope.addDimension = function (dimension) {
+                console.log('dimension......', dimension)
+                dimension.push({v: 1})
 
-            function isAccept(item) {
+            }
+
+            $scope.addDimensionValue = function (item) {
+                console.log('addDimensionValue......', item)
+                item.v = item.v + 1
+
+            }
+
+
+            function isAccept(item, sheetNo) {
 
 
                 if (item.isUsed) {
                     return true
                 }
 
-                let isInCol = isInArray(item, $scope.itemsList.col)
-                let isInRow = isInArray(item, $scope.itemsList.row)
-
-
-                console.log('c',isInCol,isInRow)
+                let isInCol = isInArray(item, $scope.itemsList.sheets[sheetNo].col)
+                let isInRow = isInArray(item, $scope.itemsList.sheets[sheetNo].row)
 
                 if (isInRow || isInCol) {
                     return false
                 } else {
                     return true
                 }
-
+                return true
             }
 
             function isInArray(item, ary) {
@@ -133,7 +174,7 @@ export default function (app) {
                     return false
                 }
                 let newArr = ary.filter(function (ele) {
-                    return ele.Label === item.Label
+                    return ele.name === item.name
                 })
                 if (newArr.length > 0) {
                     return true
@@ -143,17 +184,69 @@ export default function (app) {
             }
 
             function setAllUsed() {
-                for (let item of $scope.itemsList.col) {
-                    item.isUsed = true
 
-                }
-                for (let item of $scope.itemsList.row) {
-                    item.isUsed = true
 
+                for (let sheet of $scope.itemsList.sheets) {
+                    for (let item of sheet.col) {
+                        item.isUsed = true
+
+
+                    }
+                    for (let item of sheet.row) {
+                        item.isUsed = true
+
+                    }
                 }
             }
 
+            // 将维度设置到尾部
+            function setDimensionToEnd() {
+                for (let sheet of $scope.itemsList.sheets) {
+                    setToEnd(sheet.col)
+                    setToEnd(sheet.row)
+
+
+                }
+
+                function setToEnd(ary) {
+
+                    for (let i in ary) {
+
+                        if (ary[i].name === '维度') {
+                            ary.push(ary[i])
+                            ary.splice(i, 1)
+                            break
+                        }
+                    }
+
+                }
+
+            }
         }])
+
+    var json = {
+        "sheets": [
+            {
+                "dimension": [
+                    {name: "推送量", id: 1},
+                    {name: "推送完成率", id: 2}
+                ],
+                "row": [
+                    {"name": "市场", "value": "按时"},
+                    {"name": "媒体", "value": "Letv"},
+                    {
+                        "name": "维度",
+                        "dimension": [
+                            {name: "推送量", id: 1},
+                            {name: "推送完成率", id: 2}
+                        ]
+                    }
+                ],
+                "col": [
+                    {"name": "平台", "value": "PC"}]
+            }
+        ]
+    }
 
 
 }
